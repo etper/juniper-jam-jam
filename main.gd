@@ -38,12 +38,38 @@ func _on_spin_pressed():
 
 	spinning = true
 
+	var reward = roll_reward()
+
+	var target_angle := 0
+
+	match reward:
+		50:
+			target_angle = 0
+		100:
+			target_angle = 60
+		250:
+			target_angle = 120
+		500:
+			target_angle = 180
+		1000:
+			target_angle = 240
+		5000:
+			target_angle = 300
+
 	var tween = create_tween()
-	tween.tween_property($Wheel, "rotation", $Wheel.rotation + TAU * 6, 2.5)
+
+	tween.set_trans(Tween.TRANS_QUART)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(
+		$Wheel,
+		"rotation",
+		$Wheel.rotation + TAU * 6 + deg_to_rad(target_angle),
+		2.5
+	)
 
 	await tween.finished
 
-	var reward = roll_reward()
 	reward *= coin_value_mult
 
 	coins += reward
