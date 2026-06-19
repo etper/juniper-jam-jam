@@ -1,3 +1,56 @@
 [gd_scene format=3 uid="uid://bv36r4664ymfm"]
 
+[ext_resource type="Script" uid="uid://bgqcbx2hb46dh" path="res://juniper jam/main.gd" id="1_opi3j"]
+
 [node name="Main" type="Node2D" unique_id=568157225]
+script = ExtResource("1_opi3j")
+
+[node name="Wheel" type="ColorRect" parent="." unique_id=1940910685]
+offset_left = 526.0
+offset_top = 280.0
+offset_right = 566.0
+offset_bottom = 320.0
+
+[node name="SpinButton" type="Button" parent="." unique_id=1771521690]
+offset_left = 519.0
+offset_top = 366.0
+offset_right = 564.0
+offset_bottom = 397.0
+text = "SPIN"
+
+[node name="CoinsLabel" type="Label" parent="." unique_id=1392712263]
+offset_left = 496.0
+offset_top = 65.0
+offset_right = 563.0
+offset_bottom = 88.0
+text = "COINS: 0"
+
+[node name="RewardLabel" type="Label" parent="." unique_id=791284391]
+offset_left = 499.0
+offset_top = 96.0
+offset_right = 566.0
+offset_bottom = 119.0
+text = "REWARD"
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="." unique_id=1942902556]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CoinValueButton" type="Button" parent="UpgradeContainer" unique_id=1797737848]
+layout_mode = 2
+text = "Coin Value"
+
+[node name="JackpotButton" type="Button" parent="UpgradeContainer" unique_id=366328253]
+layout_mode = 2
+text = "Jackpot"
+
+[node name="AutoSpinButton" type="Button" parent="UpgradeContainer" unique_id=1236176565]
+layout_mode = 2
+text = "Auto Spin"
+
+[node name="Timer" type="Timer" parent="." unique_id=2082568245]
+
+[connection signal="pressed" from="SpinButton" to="." method="_on_spin_pressed"]
+[connection signal="pressed" from="UpgradeContainer/CoinValueButton" to="." method="_on_coin_value_pressed"]
+[connection signal="pressed" from="UpgradeContainer/JackpotButton" to="." method="_on_jackpot_pressed"]
+[connection signal="pressed" from="UpgradeContainer/AutoSpinButton" to="." method="_on_auto_spin_pressed"]
